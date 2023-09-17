@@ -7,6 +7,7 @@ import { store } from './redux/store.js';
 import { Routes } from './components/router/index.js';
 
 import { theme } from './constants';
+import { AppContainer } from './App.styled.jsx';
 
 export const App = () => {
   return (
@@ -14,7 +15,9 @@ export const App = () => {
       <ThemeProvider theme={theme}>
         <Global styles={globalStyle} />
 
-        <Routes />
+        <AppContainer>
+          <Routes />
+        </AppContainer>
       </ThemeProvider>
     </Provider>
   );

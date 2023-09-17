@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import {theme} from './constants'
+import { theme } from './constants';
 export const globalStyle = css`
   html,
   body,
@@ -88,6 +88,7 @@ export const globalStyle = css`
     border: 0;
     vertical-align: baseline;
     font-family: 'Manrope', sans-serif;
+    transition: all 0.3s ease-in-out;
     //font-family: 'Inter', sans-serif;
     //font-family: 'Montserrat', sans-serif;
   }
