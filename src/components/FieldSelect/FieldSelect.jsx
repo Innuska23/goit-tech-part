@@ -16,6 +16,7 @@ export const FieldSelect = ({
   label,
   options = [],
   onSelect,
+  displayKey = 'id',
 }) => {
   const [selectedValue, setSelectedValue] = useState('');
   const [filterOptionsValue, setFilterOptionsValue] = useState('');
@@ -27,11 +28,13 @@ export const FieldSelect = ({
   };
 
   const filteredOptions = filterOptionsValue
-    ? options.filter(options => options.title.includes(filterOptionsValue))
+    ? options.filter(options =>
+        options[displayKey].includes(filterOptionsValue)
+      )
     : options;
 
   const handleOptionClick = option => () => {
-    setSelectedValue(option.title);
+    setSelectedValue(option[displayKey]);
     onSelect && onSelect(option);
   };
 
@@ -51,8 +54,8 @@ export const FieldSelect = ({
             <FieldOption>Not found</FieldOption>
           )}
 
-          {filteredOptions.map(option => (
-            <FieldOption isSelectable>{option.title}</FieldOption>
+          {filteredOptions?.map(option => (
+            <FieldOption isSelectable>{option[displayKey]}</FieldOption>
           ))}
         </FieldOptionsContainer>
       )}

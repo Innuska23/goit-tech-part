@@ -21,5 +21,5 @@ export const router = createBrowserRouter(
       element: <FavoritesPage />,
     },
   ],
-  { basename: import.meta.env.DEV ? '/' : '/goit-tech-part/' }
+  { basename: '/goit-tech-part/' }
 );

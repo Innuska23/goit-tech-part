@@ -7,7 +7,7 @@ export const carsAPI = createApi({
   baseQuery: client,
   endpoints: build => ({
     carsList: build.query({
-      query: '/cars',
+      query: () => '/cars',
     }),
   }),
 });

@@ -41,6 +41,7 @@ export const FieldOptionsContainer = styled.div`
   padding-inline: ${({ theme }) => theme.spacing(9)};
   padding-block: ${({ theme }) => theme.spacing(7)};
   border: 1px solid ${({ theme }) => theme.colors.secondaryText};
+  background-color: white;
   width: 100%;
   z-index: ${({ theme }) => theme.zIndexes.modal - 1};
 `;

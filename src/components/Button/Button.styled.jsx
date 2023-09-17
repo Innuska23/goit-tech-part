@@ -8,7 +8,7 @@ export const StyledButton = styled.button`
   font-size: 14px;
   line-height: 20px;
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.blue1};
+  background-color: ${({ theme }) => theme.colors.blue2};
   border: none;
   padding: 0;
   padding-inline: ${({ theme }) => theme.spacing(2)};
@@ -17,6 +17,6 @@ export const StyledButton = styled.button`
   height: 44px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.blue2};
+    background-color: ${({ theme }) => theme.colors.blue1};
   }
 `;
