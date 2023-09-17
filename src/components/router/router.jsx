@@ -2,31 +2,23 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { ROUTER_URL_LIST } from '../../constants/index.js';
 
+import { HomePage } from '../../pages/HomePage/index.js';
+import { FavoritesPage } from '../../pages/FavoritesPage/index.js';
+import { CatalogPage } from '../../pages/CatalogPage/index.js';
+
 export const router = createBrowserRouter(
   [
     {
       path: ROUTER_URL_LIST.HOME,
-      async lazy() {
-        const { HomePage } = await import('../../pages/HomePage');
-
-        return { element: <HomePage /> };
-      },
+      element: <HomePage />,
     },
     {
       path: ROUTER_URL_LIST.CATALOG,
-      async lazy() {
-        const { CatalogPage } = await import('../../pages/CatalogPage');
-
-        return { element: <CatalogPage /> };
-      },
+      element: <CatalogPage />,
     },
     {
       path: ROUTER_URL_LIST.FAVORITES,
-      async lazy() {
-        const { FavoritesPage } = await import('../../pages/FavoritesPage');
-
-        return { element: <FavoritesPage /> };
-      },
+      element: <FavoritesPage />,
     },
   ],
   { basename: import.meta.env.DEV ? '/' : '/goit-tech-part/' }

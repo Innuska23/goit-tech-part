@@ -35,7 +35,7 @@ import {
 export const CarCard = ({ id, year, make, model, img, rentalPrice }) => {
   return (
     <CarCardContainer>
-      <CarCardImage />
+      <CarCardImage src={img} />
 
       <CarName>
         <CarModel></CarModel>
