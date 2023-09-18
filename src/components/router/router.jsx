@@ -5,6 +5,7 @@ import { ROUTER_URL_LIST } from '../../constants/index.js';
 import { HomePage } from '../../pages/HomePage/index.js';
 import { FavoritesPage } from '../../pages/FavoritesPage/index.js';
 import { CatalogPage } from '../../pages/CatalogPage/index.js';
+import { NotFound } from '../../pages/NotFound/index.js';
 
 export const router = createBrowserRouter(
   [
@@ -19,6 +20,10 @@ export const router = createBrowserRouter(
     {
       path: ROUTER_URL_LIST.FAVORITES,
       element: <FavoritesPage />,
+    },
+    {
+      path: '*',
+      element: <NotFound />,
     },
   ],
   { basename: '/goit-tech-part/' }

@@ -16,4 +16,4 @@ The application consists of three main pages:
 
 3. Favorites Page: Shows the cars that the prospect liked.
 
-![Favorites Page](/src/assets/FavoritesPage.jpg)
+![Favorites Page](/src/assets/FavoritesPage.png)

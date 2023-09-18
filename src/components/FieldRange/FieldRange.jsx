@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 
 export const FieldRange = ({ onSelect, values }) => {
   const refTimeoutId = useRef(null);
-  const [fromValue, setFromValue] = useState(null);
-  const [toValue, setToValue] = useState(null);
+  const [fromValue, setFromValue] = useState('');
+  const [toValue, setToValue] = useState('');
 
   const handleChangeValue = isTo => e => {
     if (isTo) {
@@ -26,8 +26,8 @@ export const FieldRange = ({ onSelect, values }) => {
   }, [fromValue, toValue]);
 
   useEffect(() => {
-    setToValue(values.toValue || null);
-    setFromValue(values.fromValue || null);
+    setToValue(values.toValue || '');
+    setFromValue(values.fromValue || '');
   }, [values]);
 
   return (
