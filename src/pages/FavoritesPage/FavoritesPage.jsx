@@ -1,3 +1,7 @@
+import { CatalogLayout } from '../../components/Layout/CatalogLayout/index.js';
+import { Link } from 'react-router-dom';
+import { ROUTER_URL_LIST } from '../../constants/index.js';
+
 export const FavoritesPage = () => {
-  return <h1>Favorites page</h1>;
+  return <CatalogLayout></CatalogLayout>;
 };
