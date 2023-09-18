@@ -18,5 +18,6 @@ export const StyledButton = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.blue1};
+    cursor: pointer;
   }
 `;
