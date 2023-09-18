@@ -15,10 +15,14 @@ export const CarImageIcon = styled.img`
 `;
 
 export const CarIconButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
   border: none;
   background: transparent;
   height: 18px;
   width: 18px;
+  cursor: pointer;
 `;
 
 export const CarCardImage = styled.img`

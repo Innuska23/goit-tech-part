@@ -4,29 +4,28 @@ import {
   CarCardImage,
   CardsInfoContainer,
   CardsInfoItem,
+  CarIconButton,
+  CarImageIcon,
   CarModel,
   CarName,
   CarNameAndPriceContainer,
 } from './CarCard.styled.jsx';
 import { Button } from '../Button/index.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavorites } from '../../redux/selectors/cars.selector.js';
 
-export const CarCard = ({
-  carInfo: {
-    id,
-    year,
-    make,
-    model,
-    img,
-    rentalPrice,
-    address,
-    rentalCompany,
-    type,
-    mileage,
-    functionalities,
-  },
-}) => {
-  const addressList = address.split(', ').slice(-2);
-  const func = functionalities
+import favoriteActiveSrc from '../../assets/favorite-active.svg';
+import favoriteNormalSrc from '../../assets/favorite-normal.svg';
+import { calendarTaskActions } from '../../redux/reducers/cars.slice.js';
+
+export const CarCard = ({ carInfo }) => {
+  const favorites = useSelector(selectFavorites);
+  const dispatch = useDispatch();
+  const isFavorites =
+    favorites.findIndex(item => item.id === carInfo.id) !== -1;
+
+  const addressList = carInfo.address.split(', ').slice(-2);
+  const func = carInfo.functionalities
     .reduce(function (a, b) {
       return a.length <= b.length ? a : b;
     })
@@ -34,26 +33,45 @@ export const CarCard = ({
     .slice(0, 2)
     .join(' ');
 
-  console.log(func);
-  const options = [...addressList, rentalCompany, type, model, mileage, func];
+  const options = [
+    ...addressList,
+    carInfo.rentalCompany,
+    carInfo.type,
+    carInfo.model,
+    carInfo.mileage,
+    func,
+  ];
 
-  const options1 = options.slice(0, 4);
-  const options2 = options.slice(4, 8);
+  const handleFavoriteClick = () => {
+    if (isFavorites) {
+      dispatch(calendarTaskActions.removeFavorites(carInfo));
+
+      return;
+    }
+    dispatch(calendarTaskActions.addFavorites(carInfo));
+  };
+
   return (
     <CarCardContainer>
-      <CarCardImage src={img} />
+      <CarCardImage src={carInfo.img} />
+
+      <CarIconButton onClick={handleFavoriteClick}>
+        <CarImageIcon
+          src={isFavorites ? favoriteActiveSrc : favoriteNormalSrc}
+        />
+      </CarIconButton>
 
       <CarNameAndPriceContainer>
         <CarName>
-          {make} <CarModel>{model}</CarModel>, {year}
+          {carInfo.make} <CarModel>{carInfo.model}</CarModel>, {carInfo.year}
         </CarName>
 
-        <CarName>{rentalPrice}</CarName>
+        <CarName>{carInfo.rentalPrice}</CarName>
       </CarNameAndPriceContainer>
 
       <CardsInfoContainer>
-        {options.map(item => (
-          <CardsInfoItem>{item}</CardsInfoItem>
+        {options.map((item, i) => (
+          <CardsInfoItem key={i}>{item}</CardsInfoItem>
         ))}
       </CardsInfoContainer>
 

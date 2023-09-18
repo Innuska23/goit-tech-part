@@ -25,7 +25,6 @@ export const CatalogFilters = () => {
       counter += 10;
     } while (counter < max);
   }
-  console.log(min, max, rates, length);
 
   return (
     <CatalogFiltersContainer>

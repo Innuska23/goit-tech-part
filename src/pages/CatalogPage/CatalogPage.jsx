@@ -17,8 +17,8 @@ export const CatalogPage = () => {
       </CatalogPageFiltersContainer>
 
       <CardsContainer>
-        {data?.map(carItem => (
-          <CarCard carInfo={carItem} />
+        {data?.map((carItem, i) => (
+          <CarCard key={`${carItem.id}_${i}`} carInfo={carItem} />
         ))}
       </CardsContainer>
     </CatalogLayout>
