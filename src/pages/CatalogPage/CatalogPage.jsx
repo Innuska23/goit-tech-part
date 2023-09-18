@@ -50,7 +50,7 @@ export const CatalogPage = () => {
       </CardsContainer>
 
       <BoardContainer>
-        {carList?.length === carsParams.limit && (
+        {carList?.length >= carsParams.limit && (
           <Button onClick={handleLoadMoreClick} width={274}>
             Load more
           </Button>
