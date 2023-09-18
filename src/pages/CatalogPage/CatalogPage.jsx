@@ -1,6 +1,7 @@
 import { CatalogLayout } from '../../components/Layout/CatalogLayout/index.js';
 import { CatalogFilters } from './components/CatalogFilters/index.js';
 import {
+  BoardContainer,
   CardsContainer,
   CatalogPageFiltersContainer,
 } from './CaralogPage.styled.jsx';
@@ -48,9 +49,13 @@ export const CatalogPage = () => {
         ))}
       </CardsContainer>
 
-      {carList?.length === carsParams.limit && (
-        <Button onClick={handleLoadMoreClick}>Load more</Button>
-      )}
+      <BoardContainer>
+        {carList?.length === carsParams.limit && (
+          <Button onClick={handleLoadMoreClick} width={274}>
+            Load more
+          </Button>
+        )}
+      </BoardContainer>
     </CatalogLayout>
   );
 };

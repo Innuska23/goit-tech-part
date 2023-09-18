@@ -20,16 +20,20 @@ export const CarCardBackdrop = styled.div`
 `;
 
 export const CarCardContainer = styled.div`
+  position: fixed;
+  left: calc(50% - 270px);
+  top: 150px;
+  bottom: 150px;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(7)};
-  position: relative;
   margin: auto;
-  margin-top: 150px;
-  width: 541px;
+  width: 540px;
+  max-height: 700px;
   border-radius: ${({ theme }) => theme.borderRadius(1)};
   padding: ${({ theme }) => theme.spacing(20)};
   background-color: ${({ theme }) => theme.colors.white};
+  overflow-y: scroll;
 `;
 
 export const ButtonContainer = styled.div`

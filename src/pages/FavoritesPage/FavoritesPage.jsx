@@ -16,7 +16,7 @@ export const FavoritesPage = () => {
 
   return (
     <CatalogLayout>
-      <CardsContainer>
+      <CardsContainer style={{ paddingTop: '174px' }}>
         {localData?.map(carItem => (
           <CarCard key={carItem.id} carInfo={carItem} />
         ))}
