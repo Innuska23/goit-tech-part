@@ -6,7 +6,16 @@ export const FieldRangeContainer = styled.div`
   display: flex;
   max-height: 48px;
 `;
-export const StyledField = styled(FieldSelectorInput)`
+export const StyledField = styled.input`
+  display: block;
+  border: none;
+  padding-inline: ${({ theme }) => theme.spacing(9)};
+  padding-block: ${({ theme }) => theme.spacing(7)};
+  background-color: ${({ theme }) => theme.colors.grey1};
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.colors.primaryText};
+  outline: none;
   border-radius: 0;
   width: 100%;
 

@@ -6,9 +6,35 @@ import {
 } from './CaralogPage.styled.jsx';
 import { useCarsListQuery } from '../../redux/api/carsAPI.js';
 import { CarCard } from '../../components/CarCard/CarCard.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectCarsFilter,
+  selectQueryParams,
+} from '../../redux/selectors/cars.selector.js';
+import { filterCars } from '../../utils';
+import { Button } from '../../components/Button/index.js';
+import { calendarTaskActions } from '../../redux/reducers/cars.slice.js';
 
 export const CatalogPage = () => {
-  const { data } = useCarsListQuery();
+  const dispatch = useDispatch();
+
+  const carsParams = useSelector(selectQueryParams);
+  const filters = useSelector(selectCarsFilter);
+
+  const { carList } = useCarsListQuery(carsParams, {
+    selectFromResult: ({ data }) => ({
+      carList: data?.filter(car => filterCars(car, filters)),
+    }),
+  });
+
+  const handleLoadMoreClick = () => {
+    dispatch(
+      calendarTaskActions.setQueryParams({
+        ...carsParams,
+        limit: carsParams.limit + 8,
+      })
+    );
+  };
 
   return (
     <CatalogLayout>
@@ -17,10 +43,14 @@ export const CatalogPage = () => {
       </CatalogPageFiltersContainer>
 
       <CardsContainer>
-        {data?.map((carItem, i) => (
+        {carList?.map((carItem, i) => (
           <CarCard key={`${carItem.id}_${i}`} carInfo={carItem} />
         ))}
       </CardsContainer>
+
+      {carList?.length === carsParams.limit && (
+        <Button onClick={handleLoadMoreClick}>Load more</Button>
+      )}
     </CatalogLayout>
   );
 };

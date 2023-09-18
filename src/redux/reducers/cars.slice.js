@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  queryParams: {
+    page: 1,
+    limit: 8,
+  },
   favorites: [],
   filters: {
     price: null,
@@ -23,6 +27,18 @@ export const calendarTaskSlice = createSlice({
       state.favorites = state.favorites.filter(
         current => current.id !== action.payload.id
       );
+    },
+
+    setFilters: (state, action) => {
+      state.filters = action.payload;
+    },
+
+    resetFilters: (state, action) => {
+      state.filters = initialState.filters;
+    },
+
+    setQueryParams: (state, action) => {
+      state.queryParams = action.payload;
     },
   },
 });

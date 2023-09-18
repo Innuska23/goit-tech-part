@@ -10,14 +10,7 @@ import {
 import { useOutsideClick } from '../../hooks/useOutsideClick.js';
 import chevronIcon from '../../assets/chevron-down.svg';
 
-export const FieldSelect = ({
-  placeholder,
-  children,
-  label,
-  options = [],
-  onSelect,
-  displayKey = 'id',
-}) => {
+export const FieldSelect = ({ options = [], onSelect, displayKey = 'id' }) => {
   const [selectedValue, setSelectedValue] = useState('');
   const [filterOptionsValue, setFilterOptionsValue] = useState('');
   const [isShowOptions, setIsShowOptions] = useState(false);
@@ -55,7 +48,14 @@ export const FieldSelect = ({
           )}
 
           {filteredOptions?.map(option => (
-            <FieldOption isSelectable>{option[displayKey]}</FieldOption>
+            <FieldOption
+              key={option.id}
+              isSelected={option.id === selectedValue.id}
+              onClick={handleOptionClick(option)}
+              isSelectable
+            >
+              {option[displayKey]}
+            </FieldOption>
           ))}
         </FieldOptionsContainer>
       )}

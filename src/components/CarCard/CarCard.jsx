@@ -17,10 +17,14 @@ import { selectFavorites } from '../../redux/selectors/cars.selector.js';
 import favoriteActiveSrc from '../../assets/favorite-active.svg';
 import favoriteNormalSrc from '../../assets/favorite-normal.svg';
 import { calendarTaskActions } from '../../redux/reducers/cars.slice.js';
+import { CarCardModal } from '../CarCardModal/CarCardModal.jsx';
+import { useState } from 'react';
 
 export const CarCard = ({ carInfo }) => {
   const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
+  const [isOpenModal, setIsOpenModal] = useState();
+
   const isFavorites =
     favorites.findIndex(item => item.id === carInfo.id) !== -1;
 
@@ -75,9 +79,13 @@ export const CarCard = ({ carInfo }) => {
         ))}
       </CardsInfoContainer>
 
-      <ButtonContainer>
+      <ButtonContainer onClick={() => setIsOpenModal(true)}>
         <Button>Learn more</Button>
       </ButtonContainer>
+
+      {isOpenModal && (
+        <CarCardModal carInfo={carInfo} onClose={() => setIsOpenModal(false)} />
+      )}
     </CarCardContainer>
   );
 };

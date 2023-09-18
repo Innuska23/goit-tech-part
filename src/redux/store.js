@@ -31,6 +31,7 @@ const middlewares = APIS.map(({ middleware }) => middleware);
 
 const persistConfig = {
   key: 'root',
+  blacklist: [...APIS.map(reducer => reducer.reducerPath)],
   storage,
 };
 

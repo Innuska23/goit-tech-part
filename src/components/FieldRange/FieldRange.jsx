@@ -1,9 +1,10 @@
 import { FieldRangeContainer, StyledField } from './FieldRange.styled.jsx';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export const FieldRange = ({}) => {
-  const [fromValue, setFromValue] = useState();
-  const [toValue, setToValue] = useState();
+export const FieldRange = ({ onSelect, values }) => {
+  const refTimeoutId = useRef(null);
+  const [fromValue, setFromValue] = useState(null);
+  const [toValue, setToValue] = useState(null);
 
   const handleChangeValue = isTo => e => {
     if (isTo) {
@@ -13,6 +14,21 @@ export const FieldRange = ({}) => {
 
     setFromValue(parseFloat(e.currentTarget.value));
   };
+
+  useEffect(() => {
+    if (refTimeoutId.current) {
+      clearTimeout(refTimeoutId.current);
+    }
+
+    refTimeoutId.current = setTimeout(() => {
+      onSelect({ fromValue: fromValue, toValue: toValue });
+    }, 300);
+  }, [fromValue, toValue]);
+
+  useEffect(() => {
+    setToValue(values.toValue || null);
+    setFromValue(values.fromValue || null);
+  }, [values]);
 
   return (
     <FieldRangeContainer>

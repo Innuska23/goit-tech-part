@@ -11,3 +11,8 @@ export const selectFavorites = createSelector(
   selectCarsState,
   state => state.favorites
 );
+
+export const selectQueryParams = createSelector(
+  selectCarsState,
+  state => state.queryParams
+);

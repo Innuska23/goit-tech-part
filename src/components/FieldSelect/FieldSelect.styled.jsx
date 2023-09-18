@@ -46,9 +46,14 @@ export const FieldOptionsContainer = styled.div`
   z-index: ${({ theme }) => theme.zIndexes.modal - 1};
 `;
 
-export const FieldOption = styled.span`
-  color: ${({ theme }) => theme.colors.primaryText};
+export const FieldOption = styled.div`
+  color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 16px;
   line-height: 20px;
   cursor: ${({ isSelectable }) => (isSelectable ? 'pointer' : 'default')}};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.primaryText};
+    
+    }
 `;
